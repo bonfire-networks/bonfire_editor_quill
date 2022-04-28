@@ -1,0 +1,2 @@
+bonfire_common = "https://github.com/bonfire-networks/bonfire_common#main"
+pointers = "https://github.com/bonfire-networks/pointers#main"
