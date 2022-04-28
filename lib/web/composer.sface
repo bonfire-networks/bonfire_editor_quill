@@ -1,0 +1,16 @@
+<div 
+  id={Pointers.ULID.generate()}
+  phx-hook="MarkdownEditor"
+  data-placeholder={@placeholder}
+  >
+  <div 
+    id="editor"
+    class={"text-slate-800"}
+    data-placeholder={@placeholder}
+    >{@content}</div>
+   <input 
+      name={@field_name} 
+      type="hidden"
+      class="editor_hidden_input"
+      />
+  </div>
