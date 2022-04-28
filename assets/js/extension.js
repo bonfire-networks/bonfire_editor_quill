@@ -4,7 +4,7 @@ import Quill from "quill";
 import "quill-mention";
 import QuillMarkdown from 'quilljs-markdown'
 import 'quilljs-markdown/dist/quilljs-markdown-common-style.css'
-import 'quill/dist/quill.bubble.css'
+
 
 let EditorQuillHooks = {};
 
