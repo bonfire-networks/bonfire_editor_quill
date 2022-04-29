@@ -1,16 +1,42 @@
+<div
+class="relative" 
+  x-data="{
+    open: false,
+    close(focusAfter) {
+      if (! this.open) return
+      this.open = false
+      focusAfter && focusAfter.focus()
+    }
+  }"
+  x-on:keydown.escape.prevent.stop="close($refs.button)"
+  >
 <div 
   id={Pointers.ULID.generate()}
   phx-hook="MarkdownEditor"
-  data-placeholder={@placeholder}
+  
   >
   <div 
     id="editor"
-    class={"text-slate-800"}
+    class={"text-slate-800 pr-[30px]"}
     data-placeholder={@placeholder}
     >{@content}</div>
+    
    <input 
       name={@field_name} 
       type="hidden"
       class="editor_hidden_input"
       />
   </div>
+  <div @click="open = ! open" class="absolute z-30 top-2 right-2 btn btn-ghost btn-xs btn-circle">
+    <Solid.EmojiHappyIcon class="w-5 h-5 text-base-100 text-opacity-40" />
+  </div>
+  <div 
+    x-ref="panel"
+    x-show="open"
+    x-transition.origin.top.left
+    x-on:click.outside="close($refs.button)"
+    x-show="open" 
+    class="absolute z-40 top-10 -right-28" role="tooltip">
+      <div id="picker"></div>
+  </div>
+</div>

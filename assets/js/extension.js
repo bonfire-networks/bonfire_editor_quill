@@ -1,9 +1,12 @@
-// using a pre-built editor because of troubles building ck's sass with esbuild
-// it can be customised in ./ckeditor (see package.json and src/ckeditor.js) and rebuilt with npm/webpack
 import Quill from "quill";
 import "quill-mention";
-import QuillMarkdown from 'quilljs-markdown'
-import 'quilljs-markdown/dist/quilljs-markdown-common-style.css'
+import insertText from 'insert-text-at-cursor';
+
+const TurndownService = require('turndown');
+
+const turndownService = new TurndownService();
+import { Picker } from 'emoji-mart'
+
 
 
 let EditorQuillHooks = {};
@@ -21,10 +24,15 @@ EditorQuillHooks.MarkdownEditor = {
       modules: {
         mention: {
           allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
+          fixMentionsToQuill: true,
           mentionDenotationChars: ["@", "&", "+"],
           source: async function(searchTerm, renderList, mentionChar) {
             const matchedValues = await getFeedItems(searchTerm, mentionChar)
+
             renderList(matchedValues)
+          },
+          onSelect: function(item, insertItem) {
+            insertItem(item)
           },
           renderItem: function(item, searchTerm) {
             return `
@@ -38,25 +46,34 @@ EditorQuillHooks.MarkdownEditor = {
       }
     });
 
-    const markdownOptions = {
-      ignoreTags: [ 'a', 'h1', 'h2'], // @option - if you need to ignore some tags.
-    }
-    const quillMD = new QuillMarkdown(quill, markdownOptions)
-
-     // Assuming there is a <form class="form_with_editor"> in your application.
+    const picker = new Picker({
+      emojiButtonSize: 30,
+      emojiSize: 20,
+      previewPosition: 'none',
+      onEmojiSelect: function(emoji) {
+        const range = quill.getSelection() 
+        quill.insertText(range.index, emoji.native + ' ', 'user', true)
+      },
+      data: async () => {
+        const response = await fetch(
+          'https://cdn.jsdelivr.net/npm/@emoji-mart/data',
+        )
+    
+        return response.json()
+      }
+    })
+    // Assuming there is a <form class="form_with_editor"> in your application.
      document.querySelector('.form_with_editor').addEventListener('submit', (event) => {
-      const deltaOps = quill.getContents();
       
       const html = quill.root.innerHTML
+      const md = turndownService.turndown(html)
 
-      console.log(deltaOps)
-      
-      console.log(html)
-      this.el.querySelector('.editor_hidden_input').value = html;
+      this.el.querySelector('.editor_hidden_input').value = md;
+      quill.setText('');
     });
 
     // return quill
-    
+    document.querySelector('#picker').appendChild(picker)
   },
 };
 
@@ -72,6 +89,7 @@ EditorQuillHooks.MarkdownEditor = {
 // }
 
 function getFeedItems(queryText, prefix) {
+  console.log(prefix)
   if (queryText && queryText.length > 0) {
     return new Promise((resolve) => { 
       // this requires the bonfire_tag extension
