@@ -1,4 +1,4 @@
-defmodule Bonfire.EditorQuill.ChannelCase do
+defmodule Bonfire.Editor.Quill.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -17,13 +17,13 @@ defmodule Bonfire.EditorQuill.ChannelCase do
 
   use ExUnit.CaseTemplate
 
-  import Bonfire.EditorQuill.Integration
+  import Bonfire.Editor.Quill.Integration
 
   using do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import Bonfire.EditorQuill.ChannelCase
+      import Bonfire.Editor.Quill.ChannelCase
 
       # The default endpoint for testing
       @endpoint Bonfire.Common.Config.get!(:endpoint_module)

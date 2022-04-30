@@ -1,4 +1,4 @@
-defmodule Bonfire.EditorQuill.Integration do
+defmodule Bonfire.Editor.Quill.Integration do
   alias Bonfire.Common.Config
   alias Bonfire.Common.Utils
   import Where

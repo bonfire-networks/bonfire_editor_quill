@@ -1,14 +1,11 @@
-defmodule Bonfire.EditorQuill.Test.FakeHelpers do
+defmodule Bonfire.Editor.Quill.Test.FakeHelpers do
 
   alias Bonfire.Data.Identity.Account
-  alias Bonfire.EditorQuill.Fake
-  alias Bonfire.EditorQuill.{Accounts, Users}
+  alias Bonfire.Editor.Quill.Fake
+  alias Bonfire.Editor.Quill.{Accounts, Users}
   import ExUnit.Assertions
 
-  import Bonfire.EditorQuill.Integration
-
-  import Bonfire.EditorQuill.Fake
-
+  import Bonfire.Editor.Quill.Integration
 
 
 end

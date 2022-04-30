@@ -1,18 +1,13 @@
 import Quill from "quill";
+import QuillMarkdown from 'quilljs-markdown'
 import "quill-mention";
-import insertText from 'insert-text-at-cursor';
-
-const TurndownService = require('turndown');
-
-const turndownService = new TurndownService();
 import { Picker } from 'emoji-mart'
-
+import insertText from 'insert-text-at-cursor';
 
 
 let EditorQuillHooks = {};
 
-
-EditorQuillHooks.MarkdownEditor = { 
+EditorQuillHooks.QuillEditor = { 
   mounted() {
     console.log("editor - quill loading for elements with class .editor_area");
 
@@ -46,6 +41,9 @@ EditorQuillHooks.MarkdownEditor = {
       }
     });
 
+    // markdown is enabled
+    const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
+
     const picker = new Picker({
       emojiButtonSize: 30,
       emojiSize: 20,
@@ -62,14 +60,12 @@ EditorQuillHooks.MarkdownEditor = {
         return response.json()
       }
     })
+    
     // Assuming there is a <form class="form_with_editor"> in your application.
-     document.querySelector('.form_with_editor').addEventListener('submit', (event) => {
+    document.querySelector('.form_with_editor').addEventListener('submit', (event) => {
       
-      const html = quill.root.innerHTML
-      const md = turndownService.turndown(html)
-
-      this.el.querySelector('.editor_hidden_input').value = md;
-      quill.setText('');
+      this.el.querySelector('.editor_hidden_input').value = quill.root.innerHTML;
+      quill.setText(''); // empty the editor ready for next post
     });
 
     // return quill

@@ -1,4 +1,4 @@
-defmodule Bonfire.EditorQuill.ConnCase do
+defmodule Bonfire.Editor.Quill.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -23,14 +23,14 @@ defmodule Bonfire.EditorQuill.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import Phoenix.LiveViewTest
-      import Bonfire.EditorQuill.ConnCase
+      import Bonfire.Editor.Quill.ConnCase
 
-      import Bonfire.EditorQuill.Test.ConnHelpers
-      import Bonfire.EditorQuill.Test.FakeHelpers
+      import Bonfire.Editor.Quill.Test.ConnHelpers
+      import Bonfire.Editor.Quill.Test.FakeHelpers
 
-      alias Bonfire.EditorQuill.Fake
-      import Bonfire.EditorQuill.Fake
-      # alias Bonfire.EditorQuill.Web.Router.Helpers, as: Routes
+      # alias Bonfire.Editor.Quill.Fake
+      # import Bonfire.Editor.Quill.Fake
+      # alias Bonfire.Editor.Quill.Web.Router.Helpers, as: Routes
 
       # The default endpoint for testing
       @endpoint Bonfire.Common.Config.get!(:endpoint_module)
@@ -39,7 +39,7 @@ defmodule Bonfire.EditorQuill.ConnCase do
 
   setup tags do
 
-    import Bonfire.EditorQuill.Integration
+    import Bonfire.Editor.Quill.Integration
 
     Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 

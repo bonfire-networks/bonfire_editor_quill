@@ -1,5 +1,5 @@
 Code.eval_file("mess.exs")
-defmodule Bonfire.EditorQuill.MixProject do
+defmodule Bonfire.Editor.Quill.MixProject do
 
   use Mix.Project
 

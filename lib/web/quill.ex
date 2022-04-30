@@ -1,4 +1,4 @@
-defmodule Bonfire.Editor.Quill.Composer do
+defmodule Bonfire.Editor.Quill do
   use Bonfire.Web, :stateless_component
 
   prop field_name, :string
