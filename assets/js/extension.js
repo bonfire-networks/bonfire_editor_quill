@@ -18,16 +18,23 @@ EditorQuillHooks.QuillEditor = {
       placeholder: area.dataset.placeholder,
       modules: {
         mention: {
-          allowedChars: /^[A-Za-z\sÅÄÖåäö]*$/,
+          allowedChars: /^[A-Za-z0-9_\-.]*$/,
           fixMentionsToQuill: true,
           mentionDenotationChars: ["@", "&", "+"],
+          showDenotationChar: true,
+          blotName: 'text',
+          spaceAfterInsert: false,
           source: async function(searchTerm, renderList, mentionChar) {
             const matchedValues = await getFeedItems(searchTerm, mentionChar)
-
             renderList(matchedValues)
           },
-          onSelect: function(item, insertItem) {
-            insertItem(item)
+          onSelect: function (item, insertItem) {
+            // item.value = item.id;
+            // console.log(item)
+            // insertItem(item)
+            insertItem(item.id + " ") // if using 'text' blot
+            // end = this.cursorPos + item.id.length
+            quill.setSelection(quill.getLength(), 0); // TODO: move cursor after mention
           },
           renderItem: function(item, searchTerm) {
             return `
@@ -74,18 +81,8 @@ EditorQuillHooks.QuillEditor = {
 };
 
 
-// function getFeedItems_users(queryText) {
-//   return getFeedItems(queryText, "@");
-// }
-// function getFeedItems_groups(queryText) {
-//   return getFeedItems(queryText, "&");
-// }
-// function getFeedItems_extras(queryText) {
-//   return getFeedItems(queryText, "+");
-// }
-
 function getFeedItems(queryText, prefix) {
-  console.log(prefix)
+  // console.log(prefix)
   if (queryText && queryText.length > 0) {
     return new Promise((resolve) => { 
       // this requires the bonfire_tag extension
@@ -97,7 +94,7 @@ function getFeedItems(queryText, prefix) {
             value: item.name,
             link: item.link
           }))
-          console.log(values);
+          // console.log(values);
           resolve(values);
         })
         .catch((error) => {
