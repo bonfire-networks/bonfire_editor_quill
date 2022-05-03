@@ -2,7 +2,6 @@ import Quill from "quill";
 import QuillMarkdown from 'quilljs-markdown'
 import "quill-mention";
 import { Picker } from 'emoji-mart'
-import insertText from 'insert-text-at-cursor';
 
 
 let EditorQuillHooks = {};

@@ -15,22 +15,24 @@
   x-on:keydown.escape.prevent.stop="close($refs.button)"
   >
 <div 
+  id="test"
   phx-hook="QuillEditor"
-  id="quill_editor"
   >
   <div 
     id="editor"
     class={"text-slate-800 pr-[30px]"}
     data-placeholder={@placeholder}
-    >{@content}</div>
-    
-   <input 
-      name={@field_name} 
-      type="hidden"
-      class="editor_hidden_input"
-      />
+    >{@content}
   </div>
-  <div @click="open = ! open" class="absolute z-30 top-2 right-2 btn btn-ghost btn-xs btn-circle">
+   <input 
+    id="quill_content"
+    name={@field_name} 
+    type="hidden"
+    class="editor_hidden_input"
+    />
+  </div>
+  <div 
+    @click="open = ! open" class="absolute z-30 top-2 right-2 btn btn-ghost btn-xs btn-circle">
     <Solid.EmojiHappyIcon class="w-5 h-5 text-base-100 text-opacity-40" />
   </div>
   <div 
