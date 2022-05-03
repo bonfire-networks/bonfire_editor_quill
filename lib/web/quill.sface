@@ -16,6 +16,7 @@
   >
 <div 
   phx-hook="QuillEditor"
+  id="quill_editor"
   >
   <div 
     id="editor"
