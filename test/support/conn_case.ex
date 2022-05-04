@@ -26,7 +26,7 @@ defmodule Bonfire.Editor.Quill.ConnCase do
       import Bonfire.UI.Common.Testing.Helpers
 
       import Phoenix.LiveViewTest
-      import Bonfire.Editor.Quill.ConnCase
+      # import Bonfire.Editor.Quill.ConnCase, async: true
 
       import Bonfire.Editor.Quill.Test.ConnHelpers
       import Bonfire.Editor.Quill.Test.FakeHelpers
