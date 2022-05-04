@@ -23,7 +23,7 @@ defmodule Bonfire.Editor.Quill.DataCase do
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Bonfire.Editor.Quill.DataCase, async: true
+      # import Bonfire.Editor.Quill.DataCase
     end
   end
 
