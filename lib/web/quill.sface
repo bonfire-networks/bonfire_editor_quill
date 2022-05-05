@@ -15,7 +15,6 @@
   x-on:keydown.escape.prevent.stop="close($refs.button)"
   >
 <div 
-  id="test"
   phx-hook="QuillEditor"
   >
   <div 

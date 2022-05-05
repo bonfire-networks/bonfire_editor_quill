@@ -4,5 +4,6 @@ defmodule Bonfire.Editor.Quill do
   prop field_name, :string
   prop placeholder, :string
   prop content, :string
+  prop insert_text, :any
   prop textarea_class, :string
 end

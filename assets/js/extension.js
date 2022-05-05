@@ -48,7 +48,7 @@ EditorQuillHooks.QuillEditor = {
     });
 
     // markdown is enabled
-    const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
+    // const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
 
     const picker = new Picker({
       emojiButtonSize: 30,
@@ -56,6 +56,7 @@ EditorQuillHooks.QuillEditor = {
       previewPosition: 'none',
       onEmojiSelect: function(emoji) {
         const range = quill.getSelection() 
+        console.log(range)
         quill.insertText(range.index, emoji.native + ' ', 'user', true)
       },
       data: async () => {
