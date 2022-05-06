@@ -1,7 +1,6 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet" />
 
 <div 
-  id={Pointers.ULID.generate()}
   phx-update="ignore" 
   class="relative" 
   x-data="{
@@ -15,6 +14,7 @@
   x-on:keydown.escape.prevent.stop="close($refs.button)"
   >
 <div 
+  id={Pointers.ULID.generate()}
   phx-hook="QuillEditor"
   >
   <div 
