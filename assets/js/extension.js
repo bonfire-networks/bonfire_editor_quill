@@ -56,8 +56,13 @@ EditorQuillHooks.QuillEditor = {
       previewPosition: 'none',
       onEmojiSelect: function(emoji) {
         const range = quill.getSelection() 
+        console.log(quill)
         console.log(range)
-        quill.insertText(range.index, emoji.native + ' ', 'user', true)
+        if (range != null) {
+          quill.insertText(range.index, emoji.native + ' ', 'user', true)
+        } else {
+          quill.insertText(0, emoji.native + ' ', 'user', true)
+        }
       },
       data: async () => {
         const response = await fetch(
