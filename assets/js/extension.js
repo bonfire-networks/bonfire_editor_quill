@@ -73,8 +73,8 @@ EditorQuillHooks.QuillEditor = {
       }
     })
     
-    // Assuming there is a <form class="form_with_editor"> in your application.
-    document.querySelector('.form_with_editor').addEventListener('submit', (event) => {
+    // Assuming there is a <form class="with_editor"> in your application.
+    document.querySelector('form.with_editor').addEventListener('submit', (event) => {
       
       this.el.querySelector('.editor_hidden_input').value = quill.root.innerHTML;
       quill.setText(''); // empty the editor ready for next post
