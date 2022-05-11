@@ -1,5 +1,5 @@
 import Quill from "quill";
-import QuillMarkdown from 'quilljs-markdown'
+// import QuillMarkdown from 'quilljs-markdown'
 import "quill-mention";
 import { Picker } from 'emoji-mart'
 
