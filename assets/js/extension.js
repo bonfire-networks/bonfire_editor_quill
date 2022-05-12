@@ -2,9 +2,10 @@ import Quill from "quill";
 // import QuillMarkdown from 'quilljs-markdown'
 import "quill-mention";
 import { Picker } from 'emoji-mart'
-
+import insertText from 'insert-text-at-cursor';
 
 let EditorQuillHooks = {};
+let gquill = null
 
 EditorQuillHooks.QuillEditor = { 
   mounted() {
@@ -47,6 +48,8 @@ EditorQuillHooks.QuillEditor = {
       }
     });
 
+    gquill = quill
+
     // markdown is enabled
     // const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
 
@@ -83,6 +86,18 @@ EditorQuillHooks.QuillEditor = {
     // return quill
     document.querySelector('#picker').appendChild(picker)
   },
+  updated() {
+    console.log("editor updated")
+    console.log(this.el.dataset.insert_text)
+    gquill.insertText(0, this.el.dataset.insert_text + ' ', 'user', true)
+
+    document.querySelector('form.with_editor').addEventListener('submit', (event) => {
+      console.log("test")
+      this.el.querySelector('.editor_hidden_input').value = gquill.root.innerHTML;
+      gquill.setText(''); // empty the editor ready for next post
+    });
+    // insertText(document.querySelector('#editor'), this.el.dataset.insert_text)
+  }
 };
 
 
