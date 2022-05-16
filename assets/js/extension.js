@@ -2,7 +2,6 @@ import Quill from "quill";
 // import QuillMarkdown from 'quilljs-markdown'
 import "quill-mention";
 import { Picker } from 'emoji-mart'
-import insertText from 'insert-text-at-cursor';
 
 let EditorQuillHooks = {};
 let gquill = null
@@ -89,7 +88,12 @@ EditorQuillHooks.QuillEditor = {
   updated() {
     console.log("editor updated")
     console.log(this.el.dataset.insert_text)
-    gquill.insertText(0, this.el.dataset.insert_text + ' ', 'user', true)
+    const inserted_text = this.el.dataset.insert_text
+    if (inserted_text == undefined) {
+      gquill.setText('\n')  
+    } else {
+      gquill.insertText(0, this.el.dataset.insert_text + ' ', 'user', true)
+    }
 
     document.querySelector('form.with_editor').addEventListener('submit', (event) => {
       console.log("test")
