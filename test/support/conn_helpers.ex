@@ -4,7 +4,7 @@ defmodule Bonfire.Editor.Quill.Test.ConnHelpers do
   import Plug.Conn
   import Phoenix.ConnTest
 
-      import Bonfire.UI.Common.Testing.Helpers
+  import Bonfire.UI.Common.Testing.Helpers
 
   import Phoenix.LiveViewTest
   # alias CommonsPub.Accounts
