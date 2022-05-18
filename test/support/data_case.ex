@@ -15,7 +15,7 @@ defmodule Bonfire.Editor.Quill.DataCase do
   """
 
   use ExUnit.CaseTemplate
-  import Bonfire.Editor.Quill.Integration
+  # import Bonfire.Editor.Quill.Integration
 
   using do
     quote do

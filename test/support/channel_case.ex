@@ -17,7 +17,7 @@ defmodule Bonfire.Editor.Quill.ChannelCase do
 
   use ExUnit.CaseTemplate
 
-  import Bonfire.Editor.Quill.Integration
+  # import Bonfire.Editor.Quill.Integration
 
   using do
     quote do

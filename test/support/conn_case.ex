@@ -42,7 +42,7 @@ defmodule Bonfire.Editor.Quill.ConnCase do
 
   setup tags do
 
-    import Bonfire.Editor.Quill.Integration
+    # import Bonfire.Editor.Quill.Integration
 
     Bonfire.Common.Test.Interactive.setup_test_repo(tags)
 
