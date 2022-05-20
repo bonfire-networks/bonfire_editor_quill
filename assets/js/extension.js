@@ -58,8 +58,6 @@ EditorQuillHooks.QuillEditor = {
       previewPosition: 'none',
       onEmojiSelect: function(emoji) {
         const range = quill.getSelection() 
-        console.log(quill)
-        console.log(range)
         if (range != null) {
           quill.insertText(range.index, emoji.native + ' ', 'user', true)
         } else {
@@ -86,8 +84,6 @@ EditorQuillHooks.QuillEditor = {
     document.querySelector('#picker').appendChild(picker)
   },
   updated() {
-    console.log("editor updated")
-    console.log(this.el.dataset.insert_text)
     const inserted_text = this.el.dataset.insert_text
     if (inserted_text == undefined) {
       gquill.setText('\n')  
@@ -96,11 +92,9 @@ EditorQuillHooks.QuillEditor = {
     }
 
     document.querySelector('form.with_editor').addEventListener('submit', (event) => {
-      console.log("test")
       this.el.querySelector('.editor_hidden_input').value = gquill.root.innerHTML;
       gquill.setText(''); // empty the editor ready for next post
     });
-    // insertText(document.querySelector('#editor'), this.el.dataset.insert_text)
   }
 };
 

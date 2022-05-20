@@ -36,6 +36,7 @@
     <Solid.EmojiHappyIcon class="w-5 h-5 text-base-100 text-opacity-40" />
   </div>
   <div 
+    phx-update="ignore"
     x-ref="panel"
     x-show="open"
     x-transition.origin.top.left
