@@ -1,5 +1,5 @@
 import Quill from "quill";
-// import QuillMarkdown from 'quilljs-markdown'
+import QuillMarkdown from 'quilljs-markdown'
 import "quill-mention";
 import { Picker } from 'emoji-mart'
 
@@ -50,7 +50,7 @@ EditorQuillHooks.QuillEditor = {
     gquill = quill
 
     // markdown is enabled
-    // const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
+    const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
 
     const picker = new Picker({
       emojiButtonSize: 30,
