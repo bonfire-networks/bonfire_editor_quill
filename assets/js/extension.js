@@ -38,8 +38,8 @@ EditorQuillHooks.QuillEditor = {
           renderItem: function(item, searchTerm) {
             return `
               <div class="flex flex-col py-2">
-                <div class="text-sm font-semibold">${item.value}</div>
-                <div class="text-xs text-opacity-70 font-regular">${item.id}</div>
+                <div class="text-sm text-slate-800 font-semibold">${item.value}</div>
+                <div class="text-xs text-slate-800 text-opacity-70 font-regular">${item.id}</div>
               </div>
             `;
           }
