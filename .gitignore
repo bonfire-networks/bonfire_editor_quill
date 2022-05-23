@@ -33,6 +33,7 @@ pnpm-lock.yaml
 
 # The directory NPM downloads your dependencies sources to.
 /assets/node_modules/
+/assets/.parcel-cache
 
 # Since we are building assets from assets/
 /priv/static/
