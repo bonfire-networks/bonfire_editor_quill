@@ -18,7 +18,8 @@ defmodule Bonfire.Editor.Quill.BrowserCase do
       use Wallaby.Feature
 
       import Bonfire.Editor.Quill.BrowserCase
-      import Wallaby.Query
+      alias Wallaby.Query
+      alias Wallaby.Browser
 
       import Bonfire.UI.Common.Testing.Helpers
       import Bonfire.Editor.Quill.Test.FakeHelpers

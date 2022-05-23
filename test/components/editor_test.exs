@@ -1,4 +1,4 @@
-defmodule Bonfire.Editor.Quil.EditorTests do
+defmodule Bonfire.Editor.Quill.EditorTests do
   use Bonfire.Editor.Quill.ConnCase, async: true
 
   # test "can publish a post with emoji" do
