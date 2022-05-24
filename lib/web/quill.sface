@@ -30,7 +30,7 @@
       name={@field_name} 
       type="hidden"
       class="editor_hidden_input"
-      />
+    />
   </div>
   <div 
     @click="open = ! open" class="absolute z-30 top-2 right-2 btn btn-ghost btn-xs btn-circle">
