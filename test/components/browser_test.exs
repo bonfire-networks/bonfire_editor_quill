@@ -27,8 +27,8 @@ defmodule Bonfire.Editor.Quill.BrowserTests do
 
     user_session
     # |> visit("/feed")
-    # |> fill_in(text_field("#quill_editor .ql-editor"), with: text)
-    |> click(Query.css("#quill_editor .ql-editor"))
+    # |> fill_in(text_field("#editor_quill .ql-editor"), with: text)
+    |> click(Query.css("#editor_quill .ql-editor"))
     |> Browser.send_keys([text])
     |> click(Query.button("Post"))
     # |> assert_has(css(".alert", text: "Posted!"))

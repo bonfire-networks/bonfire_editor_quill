@@ -1,6 +1,7 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet" />
 <div 
-  id={:container_quill_editor}
+  id="editor_quill_container"
+  phx-update="ignore"
   class="relative flex-1" 
   x-data="{
     open: false,
@@ -13,10 +14,9 @@
   x-on:keydown.escape.prevent.stop="close($refs.button)"
   >
   <div 
-    id={:quill_editor}
-    phx-update="ignore"
-    data-insert_text={e(assigns, :smart_input_text, "")}
+    id="editor_quill"
     phx-hook="QuillEditor"
+    data-insert_text={e(assigns, :smart_input_text, "")}
     class="h-full"
     >
     <div 
@@ -37,8 +37,6 @@
     <Solid.EmojiHappyIcon class="w-5 h-5 text-base-100 text-opacity-40" />
   </div>
   <div 
-    id={:emoji_picker}
-    phx-update="ignore"
     x-ref="panel"
     x-show="open"
     x-transition.origin.top.left

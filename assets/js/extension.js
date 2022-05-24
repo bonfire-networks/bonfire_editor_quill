@@ -75,25 +75,29 @@ EditorQuillHooks.QuillEditor = {
     
     // Assuming there is a <form class="with_editor"> in your application.
     document.querySelector('form.with_editor').addEventListener('submit', (event) => {
-      
+      console.log("submitting")
       this.el.querySelector('.editor_hidden_input').value = quill.root.innerHTML;
-      quill.setText(''); // empty the editor ready for next post
+      // quill.setText(''); // empty the editor ready for next post
+      return true;
     });
 
     // return quill
     document.querySelector('#picker').appendChild(picker)
   },
   updated() {
-    const inserted_text = this.el.dataset.insert_text
-    if (inserted_text == undefined) {
+    console.log("quill updated")
+    const insert_text = this.el.dataset.insert_text
+    if (insert_text == undefined) {
       gquill.setText('\n')  
     } else {
-      gquill.insertText(0, this.el.dataset.insert_text + ' ', 'user', true)
+      gquill.insertText(0, insert_text + ' ', 'user', true)
     }
 
     document.querySelector('form.with_editor').addEventListener('submit', (event) => {
+      console.log("post-update submitting")
       this.el.querySelector('.editor_hidden_input').value = gquill.root.innerHTML;
-      gquill.setText(''); // empty the editor ready for next post
+      // gquill.setText(''); // empty the editor ready for next post
+      return true;
     });
   }
 };
