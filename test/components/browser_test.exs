@@ -4,9 +4,7 @@ defmodule Bonfire.Editor.Quill.BrowserTests do
 
   @cookie_key "_bonfire_key"
 
-  feature "can publish a simple post", %{session: session} do
-    text = "How do I test simple things with Wallaby?"
-
+  def user_browser_session(session) do
     username = System.get_env("ADMIN_USER", "test_user")
     pw = System.get_env("ADMIN_PASSWORD", "for-testing-only")
     account = fake_account!(%{credential: %{password: pw}})
@@ -24,15 +22,32 @@ defmodule Bonfire.Editor.Quill.BrowserTests do
     # |> Browser.send_keys([:enter])
     |> click(Query.button("Log in"))
     # |> Browser.set_cookie(@cookie_key, token)
+  end
 
-    user_session
+  def new_post(session, text \\ "Hello world") do
+    session
     # |> visit("/feed")
     # |> fill_in(text_field("#editor_quill .ql-editor"), with: text)
-    |> click(Query.css("#editor_quill .ql-editor"))
+    |> click(Query.css("#editor .ql-editor"))
     |> Browser.send_keys([text])
     |> click(Query.button("Post"))
     # |> assert_has(css(".alert", text: "Posted!"))
-    |> assert_has(Query.text(text))
+    |> assert_text(Query.css("article"), text)
+  end
+
+  feature "can publish a simple post", %{session: session} do
+    user_browser_session(session)
+    |> new_post()
+  end
+
+  feature "can post a reply to a post", %{session: session} do
+    text = "...and hello to you too"
+
+    user_browser_session(session)
+    |> new_post()
+    |> click(Query.data("id", "action_reply"))
+    |> new_post(text)
+    |> Browser.take_screenshot()
   end
 
 end
