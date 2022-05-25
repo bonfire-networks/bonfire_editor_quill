@@ -35,11 +35,13 @@ defmodule Bonfire.Editor.Quill.BrowserTests do
     |> assert_text(Query.css("article"), text)
   end
 
+  @tag :browser
   feature "can publish a simple post", %{session: session} do
     user_browser_session(session)
     |> new_post()
   end
 
+  @tag :browser
   feature "can post a reply to a post", %{session: session} do
     text = "...and hello to you too"
 
