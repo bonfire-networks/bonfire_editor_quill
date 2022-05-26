@@ -4,13 +4,13 @@ import "quill-mention";
 import { Picker } from 'emoji-mart'
 
 let EditorQuillHooks = {};
-let gquill = null
+let global_quill = null
 
 EditorQuillHooks.QuillEditor = { 
   mounted() {
+    area = this.el.querySelector("#editor")
     console.log("editor - quill loading for elements with class .editor_area");
 
-    area = this.el.querySelector("#editor")
 
     const quill = new Quill(area, {
       theme: 'bubble',
@@ -47,8 +47,25 @@ EditorQuillHooks.QuillEditor = {
       }
     });
 
-    gquill = quill
+    if (this.el.dataset.insert_text != undefined && this.el.dataset.insert_text.length > 0) {
+      const range = quill.getSelection() 
+      if (range != null) {
+        quill.insertText(range.index, this.el.dataset.insert_text + ' ', 'user', true)
+      } else {
+        quill.insertText(0, this.el.dataset.insert_text + ' ', 'user', true)
+      }
+    }
 
+    quill.on('text-change', (delta, oldDelta, source) => {
+      if (source == 'api') {
+        console.log("An API call triggered this change."); 
+        } else if (source == 'user') {
+        this.el.querySelector('.editor_hidden_input').value = quill.root.innerHTML;
+			}
+    });
+
+    // global_quill = quill;
+    
     // markdown is enabled
     const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
 
@@ -76,9 +93,11 @@ EditorQuillHooks.QuillEditor = {
     // Assuming there is a <form class="with_editor"> in your application.
     document.querySelector('form.with_editor').addEventListener('submit', (event) => {
       console.log("submitting")
-      this.el.querySelector('.editor_hidden_input').value = quill.root.innerHTML;
-      // quill.setText(''); // empty the editor ready for next post
-      return true;
+      if (this.el.dataset.insert_text != undefined && this.el.dataset.insert_text.length > 0) {
+        quill.setText(this.el.dataset.insert_text + '\n')
+      } else {
+        quill.setText('\n')
+      }
     });
 
     // return quill
@@ -86,25 +105,13 @@ EditorQuillHooks.QuillEditor = {
   },
   updated() {
     console.log("quill updated")
-    const insert_text = this.el.dataset.insert_text
-    if (insert_text == undefined) {
-      gquill.setText('\n')  
-    } else {
-      gquill.insertText(0, insert_text + ' ', 'user', true)
-    }
-
-    document.querySelector('form.with_editor').addEventListener('submit', (event) => {
-      console.log("post-update submitting")
-      this.el.querySelector('.editor_hidden_input').value = gquill.root.innerHTML;
-      // gquill.setText(''); // empty the editor ready for next post
-      return true;
-    });
+    console.log(this.el.dataset.insert_text)
   }
 };
 
 
 function getFeedItems(queryText, prefix) {
-  // console.log(prefix)
+  console.log(prefix)
   if (queryText && queryText.length > 0) {
     return new Promise((resolve) => { 
       // this requires the bonfire_tag extension

@@ -35,7 +35,7 @@
   <div 
     @click="open = ! open" class="absolute z-30 top-2 right-2 btn btn-ghost btn-xs btn-circle">
     <!-- <Solid.EmojiHappyIcon class="w-5 h-5 text-base-100 text-opacity-40" /> -->
-    <svg class="w-6 h-6" id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+    <svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
         <g id="color">
           <path fill="#FCEA2B" d="M36,13c-12.6823,0-23,10.3177-23,23c0,12.6822,10.3177,23,23,23c12.6822,0,23-10.3178,23-23 C59,23.3177,48.6822,13,36,13z"/>
           <path fill="#FFFFFF" d="M41.6682,46.5925c2.018-1.0892,3.6277-2.7511,4.4969-4.7746c-1.9847,0.9853-6.1585,1.5931-10.5745,1.5426 c-4.0546-0.0464-7.7116-0.6408-9.5171-1.5426H25.835c0.939,2.1647,2.7178,3.8986,4.9168,4.9729"/>
