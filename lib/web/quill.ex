@@ -7,4 +7,7 @@ defmodule Bonfire.Editor.Quill do
   prop smart_input_text, :string, default: ""
   prop insert_text, :any
   prop textarea_class, :string
+
+  def output_format, do: :html # needed by apps to use this editor to know how to process text they receive from it
+
 end
