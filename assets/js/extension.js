@@ -68,11 +68,10 @@ EditorQuillHooks.QuillEditor = {
     
     // markdown is enabled
     const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
-
     const picker = new Picker({
       emojiButtonSize: 30,
       emojiSize: 20,
-      previewPosition: 'bottom',
+      previewPosition: 'none',
       onEmojiSelect: function(emoji) {
         const range = quill.getSelection() 
         if (range != null) {

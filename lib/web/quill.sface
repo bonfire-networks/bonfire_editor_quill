@@ -62,8 +62,14 @@
     x-transition.origin.top.left
     x-on:click.outside="close($refs.button)"
     x-show="open" 
-    class={"absolute z-40 top-10 -right-28"} 
+    class={
+      "absolute z-40 -right-28",
+      "bottom-0": e(assigns, :thread_mode, nil) == :flat,
+      "top-10": e(assigns, :thread_mode, nil) != :flat,
+    } 
     role="tooltip">
-      <div id="picker"></div>
+      <div 
+        id="picker"
+        ></div>
   </div>
 </div>
