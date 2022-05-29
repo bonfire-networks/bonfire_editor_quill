@@ -72,7 +72,7 @@ EditorQuillHooks.QuillEditor = {
     const picker = new Picker({
       emojiButtonSize: 30,
       emojiSize: 20,
-      previewPosition: 'none',
+      previewPosition: 'top',
       onEmojiSelect: function(emoji) {
         const range = quill.getSelection() 
         if (range != null) {
