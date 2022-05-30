@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ivan Minutillo",
-  "license": "ISC",
+  "license": "AGPL-3.0",
   "dependencies": {
     "emoji-mart": "^5.0.0",
     "insert-text-at-cursor": "^0.3.0",
