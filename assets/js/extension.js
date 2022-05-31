@@ -58,9 +58,11 @@ EditorQuillHooks.QuillEditor = {
 
     quill.on('text-change', (delta, oldDelta, source) => {
       if (source == 'api') {
-        console.log("An API call triggered this change."); 
+          console.log("An API call triggered this change."); 
+          this.el.querySelector('#quill_content').value = quill.root.innerHTML;
+          // console.log(quill.root.innerHTML)
         } else if (source == 'user') {
-        this.el.querySelector('.editor_hidden_input').value = quill.root.innerHTML;
+          this.el.querySelector('#quill_content').value = quill.root.innerHTML;
 			}
     });
 
@@ -90,14 +92,20 @@ EditorQuillHooks.QuillEditor = {
     })
     
     // Assuming there is a <form class="with_editor"> in your application.
-    document.querySelector('form.with_editor').addEventListener('submit', (event) => {
-      console.log("submitting")
-      if (this.el.dataset.insert_text != undefined && this.el.dataset.insert_text.length > 0) {
-        quill.setText(this.el.dataset.insert_text + '\n')
-      } else {
-        quill.setText('\n')
-      }
-    });
+    // document.querySelector('form.with_editor').addEventListener('submit', (event) => {
+    //   console.log("submitting")
+    //   if (this.el.dataset.insert_text != undefined && this.el.dataset.insert_text.length > 0) {
+    //     // this.el.querySelector('#quill_content').value = quill.root.innerHTML;
+    //     console.log(quill.root.innerHTML)
+    //     console.log(this.el.dataset.insert_text)
+    //     quill.setText(this.el.dataset.insert_text + '\n')
+    //   } else {
+    //     this.el.querySelector('#quill_content').value = quill.root.innerHTML;
+    //     // console.log(quill.root.innerHTML)
+    //     console.log(this.el.querySelector('#quill_content').value)
+    //     // quill.setText('\n')
+    //   }
+    // });
 
     // return quill
     document.querySelector('#picker').appendChild(picker)
