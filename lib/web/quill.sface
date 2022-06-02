@@ -2,7 +2,7 @@
 <div 
   id="editor_quill_container"
   phx-update="ignore"
-  class="relative flex-1" 
+  class="relative flex-1 overflow-visible" 
   x-data="{
     open: false,
     close(focusAfter) {
