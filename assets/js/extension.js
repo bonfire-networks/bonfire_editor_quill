@@ -91,6 +91,8 @@ EditorQuillHooks.QuillEditor = {
       }
     })
     
+    this.handleEvent("reset_body", ({}) => quill.setText('\n'))
+
     // Assuming there is a <form class="with_editor"> in your application.
     // document.querySelector('form.with_editor').addEventListener('submit', (event) => {
     //   console.log("submitting")
