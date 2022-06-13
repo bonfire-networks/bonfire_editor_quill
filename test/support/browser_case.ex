@@ -27,7 +27,7 @@ defmodule Bonfire.Editor.Quill.BrowserCase do
 
       @moduletag :e2e
 
-      @endpoint Bonfire.Common.Config.get!(:endpoint_module)
+      @endpoint Application.compile_env!(:bonfire, :endpoint_module)
 
       setup _ do
         on_exit(fn -> Application.put_env(:wallaby, :js_logger, :stdio) end)

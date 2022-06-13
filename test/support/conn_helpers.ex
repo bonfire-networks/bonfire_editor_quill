@@ -10,6 +10,6 @@ defmodule Bonfire.Editor.Quill.Test.ConnHelpers do
   # alias Bonfire.Data.Identity.Account
   # alias Bonfire.Data.Identity.User
 
-  # @endpoint Bonfire.Common.Config.get!(:endpoint_module)
+  # @endpoint Application.compile_env!(:bonfire, :endpoint_module)
 
 end

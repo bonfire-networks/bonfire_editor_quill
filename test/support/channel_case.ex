@@ -26,7 +26,7 @@ defmodule Bonfire.Editor.Quill.ChannelCase do
       import Bonfire.Editor.Quill.ChannelCase
 
       # The default endpoint for testing
-      @endpoint Bonfire.Common.Config.get!(:endpoint_module)
+      @endpoint Application.compile_env!(:bonfire, :endpoint_module)
     end
   end
 
