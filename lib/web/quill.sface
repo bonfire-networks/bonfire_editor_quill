@@ -2,7 +2,7 @@
 <div 
   id="editor_quill_container"
   phx-update="ignore"
-  class="relative flex-1 overflow-visible" 
+  class="relative" 
   x-data="{
     open: false,
     close(focusAfter) {
@@ -17,11 +17,14 @@
     id="editor_quill"
     phx-hook="QuillEditor"
     data-insert_text={e(assigns, :smart_input_text, "")}
-    class="h-full"
+    class={
+      "rounded-[24px] border border-base-content/30": e(assigns, :thread_mode, nil) == :flat}
     >
     <div 
       id="editor"
-      class={"text-slate-800 pr-[30px]"}
+      class={
+        "text-base-content pr-[30px]",
+        "min-h-[30px]: e(assigns, :thread_mode, nil) == :flat"}
       data-placeholder={@smart_input_prompt}
       >{@content}
     </div>
@@ -33,7 +36,11 @@
     />
   </div>
   <div 
-    @click="open = ! open" class="absolute z-30 top-2 right-2 btn btn-ghost btn-xs btn-circle">
+    @click="open = ! open" 
+    class={
+      "absolute z-30 top-2 right-2 btn btn-ghost btn-xs btn-circle",
+      "top-3": e(assigns, :thread_mode, nil) == :flat
+    }>
     <!-- <Solid.EmojiHappyIcon class="w-5 h-5 text-base-100 text-opacity-40" /> -->
     <svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
         <g id="color">
