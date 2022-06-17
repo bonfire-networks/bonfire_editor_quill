@@ -2,10 +2,7 @@
 <div 
   id="editor_quill_container"
   phx-update="ignore"
-  class={
-    "relative",
-    "h-full": e(assigns, :thread_mode, nil) != :flat
-  } 
+  class={"relative h-full"} 
   x-data="{
     open: false,
     close(focusAfter) {
@@ -21,14 +18,15 @@
     phx-hook="QuillEditor"
     data-insert_text={e(assigns, :smart_input_text, "")}
     class={
-      "h-full": e(assigns, :thread_mode, nil) != :flat,
+      "h-full",
       "rounded-[24px] border border-base-content/30": e(assigns, :thread_mode, nil) == :flat}
     >
     <div 
       id="editor"
       class={
         "text-base-content pr-[30px]",
-        "min-h-[30px]: e(assigns, :thread_mode, nil) == :flat"}
+        "min-h-[30px]": e(assigns, :thread_mode, nil) == :flat
+        }
       data-placeholder={@smart_input_prompt}
       >{@content}
     </div>
@@ -74,9 +72,10 @@
     x-on:click.outside="close($refs.button)"
     x-show="open" 
     class={
-      "absolute z-40 right-[5px]",
+      "absolute z-40",
       "bottom-0": e(assigns, :thread_mode, nil) == :flat,
       "top-10": e(assigns, :thread_mode, nil) != :flat,
+      "!top-10 right-0 bottom-[auto]": e(assigns, :showing_within, nil) == :page
     } 
     role="tooltip">
       <div 

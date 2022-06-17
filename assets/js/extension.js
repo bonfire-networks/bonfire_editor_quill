@@ -91,7 +91,10 @@ EditorQuillHooks.QuillEditor = {
       }
     })
     
-    this.handleEvent("reset_body", ({}) => quill.setText('\n'))
+    this.handleEvent("smart_input:set_body", e => {
+      console.log(e)
+      quill.setText(e.text ? e.text : "\n")
+    })
 
     // Assuming there is a <form class="with_editor"> in your application.
     // document.querySelector('form.with_editor').addEventListener('submit', (event) => {
