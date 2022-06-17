@@ -24,7 +24,8 @@
       id="editor"
       class={
         "text-base-content pr-[30px]",
-        "min-h-[30px]: e(assigns, :thread_mode, nil) == :flat"}
+        "min-h-[30px]": e(assigns, :thread_mode, nil) == :flat
+        }
       data-placeholder={@smart_input_prompt}
       >{@content}
     </div>
