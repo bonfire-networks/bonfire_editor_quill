@@ -19,7 +19,9 @@
     data-insert_text={e(assigns, :smart_input_text, "")}
     class={
       "h-full",
-      "rounded-[24px] border border-base-content/30": e(assigns, :thread_mode, nil) == :flat}
+      "!h-full": e(assigns, :showing_within, nil) == :page,
+      "h-auto rounded-[24px] border border-base-content/30": e(assigns, :thread_mode, nil) == :flat
+      }
     >
     <div 
       id="editor"
