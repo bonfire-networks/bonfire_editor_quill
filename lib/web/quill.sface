@@ -53,7 +53,7 @@
     x-transition.origin.top.left
     x-on:click.outside="close($refs.button)"
     x-show="open" 
-    :class="{'!right-3' : distraction_free}"
+    :class="{'!right-3' : show_smart_input_fullscreen}"
     class={
       "absolute z-40",
       "bottom-0": e(assigns, :thread_mode, nil) == :flat,
