@@ -42,7 +42,7 @@
   <div 
     @click="open = ! open" 
     class={
-      "absolute z-30 top-1 right-0 btn btn-ghost btn-xs btn-circle",
+      "absolute z-30 top-1 right-1 btn btn-ghost btn-sm text-[16px] btn-circle",
       "top-3": e(assigns, :thread_mode, nil) == :flat
     }>
       😛
