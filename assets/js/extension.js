@@ -47,6 +47,8 @@ EditorQuillHooks.QuillEditor = {
       }
     });
 
+    window.quill = quill;
+
     if (this.el.dataset.insert_text != undefined && this.el.dataset.insert_text.length > 0) {
       const range = quill.getSelection() 
       if (range != null) {
@@ -112,7 +114,6 @@ EditorQuillHooks.QuillEditor = {
     //   }
     // });
 
-    // return quill
     document.querySelector('#picker').appendChild(picker)
   },
   updated() {
