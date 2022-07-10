@@ -19,6 +19,7 @@
     data-insert_text={e(assigns, :smart_input_text, "")}
     class={
       "h-full",
+      "!min-h-[120px]": Settings.get([:ui, :smart_input_as], nil, assigns)==:sidebar and e(assigns, :thread_mode, nil) != :flat,
       "!h-full": e(assigns, :showing_within, nil) == :page,
       "h-auto rounded-[24px] border border-base-content/30": e(assigns, :thread_mode, nil) == :flat
       }
@@ -55,9 +56,9 @@
     x-show="open" 
     :class="{'!right-3' : show_smart_input_fullscreen}"
     class={
-      "absolute z-40",
+      "absolute z-50",
       "bottom-0 right-3": e(assigns, :thread_mode, nil) == :flat,
-      "top-10 right-3": e(assigns, :thread_mode, nil) != :flat,
+      "top-10 right-0": e(assigns, :thread_mode, nil) != :flat,
       "!top-10 right-0 bottom-[auto]": e(assigns, :showing_within, nil) == :page
     } 
     role="tooltip">
