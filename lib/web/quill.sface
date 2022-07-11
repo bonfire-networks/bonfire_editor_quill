@@ -17,17 +17,12 @@
     id="editor_quill"
     phx-hook="QuillEditor"
     data-insert_text={e(assigns, :smart_input_text, "")}
-    class={
-      "h-full",
-      "!min-h-[120px]": Settings.get([:ui, :smart_input_as], nil, assigns)==:sidebar and e(assigns, :thread_mode, nil) != :flat,
-      "!h-full": e(assigns, :showing_within, nil) == :page,
-      "h-auto rounded-[24px] border border-base-content/30": e(assigns, :thread_mode, nil) == :flat
-      }
+    class={@textarea_class}
     >
     <div 
       id="editor"
       class={
-        "text-base-content pr-[30px]",
+        "text-base-content pr-[30px] h-full min-h-full",
         "min-h-[30px]": e(assigns, :thread_mode, nil) == :flat
         }
       data-placeholder={@smart_input_prompt}

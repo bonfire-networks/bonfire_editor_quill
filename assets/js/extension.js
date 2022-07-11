@@ -9,8 +9,7 @@ let global_quill = null
 EditorQuillHooks.QuillEditor = { 
   mounted() {
     area = this.el.querySelector("#editor")
-    console.log("editor - quill loading for elements with class .editor_area");
-
+    console.log("editor - quill loading for element with id #editor");
 
     const quill = new Quill(area, {
       theme: 'bubble',
