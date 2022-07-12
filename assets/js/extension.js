@@ -8,13 +8,46 @@ let global_quill = null
 
 EditorQuillHooks.QuillEditor = { 
   mounted() {
-    area = this.el.querySelector("#editor")
+    const container = document.querySelector("#smart_input")
+    const area = this.el.querySelector("#editor")
     console.log("editor - quill loading for element with id #editor");
+
+    const supported_formats = [
+      // 'background',
+      'bold',
+      // 'color',
+      // 'font',
+      'code',
+      'italic',
+      'link',
+      // 'size',
+      'strike',
+      'script', // Superscript/Subscript 
+      'underline',
+      'blockquote',
+      'header',
+      'indent',
+      'list',
+      // 'align',
+      'direction',
+      'code-block'
+      // 'formula'
+      // 'image'
+      // 'video'
+    ];
 
     const quill = new Quill(area, {
       theme: 'bubble',
       placeholder: area.dataset.placeholder,
+      formats: supported_formats,
       modules: {
+        toolbar: [
+          ['link'],
+          ['bold', 'italic'],
+          // [{ header: [2, 3, false] }],
+          [{ 'list': 'ordered' }, { 'list': 'bullet' }, 'blockquote'],
+          // ['code-block']
+        ],
         mention: {
           allowedChars: /^[A-Za-z0-9_\-.]*$/,
           fixMentionsToQuill: true,
@@ -65,9 +98,46 @@ EditorQuillHooks.QuillEditor = {
         } else if (source == 'user') {
           this.el.querySelector('#quill_content').value = quill.root.innerHTML;
 			}
-    });
+    })
 
-    // global_quill = quill;
+    const getFileFromUrl = async function (url) {
+      // note: this will only work for remote images served with appropriate CORS headers
+      const response = await fetch(url)
+      const data = await response.blob()
+      return data;
+    }
+    
+    setFileInput = function (data, input, name, defaultType = 'image/jpeg') {
+      // console.log(data)
+      var split = data.toString().split(';base64,');
+      var type = data.type || defaultType;
+      var ext = type.split('/')[1];
+      // console.log(split) 
+      file = new File([split[1] || data], name+"."+ext, {
+        type: type,
+      })
+      console.log(file) 
+      let container = new DataTransfer();
+      container.items.add(file);
+      input.files = container.files;
+      var event = document.createEvent("HTMLEvents"); // bubble up to LV
+      event.initEvent("input", true, true);
+      input.dispatchEvent(event); 
+    }
+
+    quill.clipboard.addMatcher('IMG', (node, delta) => {
+      // console.log(node)
+      const Delta = Quill.import('delta')
+      let src = node.src;
+      const input = container.querySelector("input[type=file]")
+      // console.log(input)
+      if (src && input) {
+        getFileFromUrl(src).then(file => setFileInput(file, input, node.alt || "image"))
+      }
+      return new Delta().insert('')
+    })
+
+    // global_quill = quill; 
     
     // markdown is enabled
     const quillMarkdown = new QuillMarkdown(quill, { ignoreTags: ['ul', 'ol', 'checkbox']})
@@ -92,6 +162,8 @@ EditorQuillHooks.QuillEditor = {
       }
     })
     
+    container.querySelector('#picker').appendChild(picker)
+
     this.handleEvent("smart_input:set_body", e => {
       console.log(e)
       quill.setText(e.text ? e.text : "\n")
@@ -113,7 +185,6 @@ EditorQuillHooks.QuillEditor = {
     //   }
     // });
 
-    document.querySelector('#picker').appendChild(picker)
   },
   updated() {
     console.log("quill updated")
