@@ -13,6 +13,7 @@ EditorQuillHooks.QuillEditor = {
     console.log("editor - quill loading for element with id #editor");
 
     const supported_formats = [
+      'text',
       // 'background',
       'bold',
       // 'color',
@@ -60,11 +61,8 @@ EditorQuillHooks.QuillEditor = {
             renderList(matchedValues)
           },
           onSelect: function (item, insertItem) {
-            // item.value = item.id;
-            // console.log(item)
-            // insertItem(item)
-            insertItem(item.id + " ") // if using 'text' blot
-            // end = this.cursorPos + item.id.length
+            // console.log(item.id)
+            insertItem(item.id+" ") // if using 'text' blot
             quill.setSelection(quill.getLength(), 0); // TODO: move cursor after mention
           },
           renderItem: function(item, searchTerm) {
@@ -194,7 +192,7 @@ EditorQuillHooks.QuillEditor = {
 
 
 function getFeedItems(queryText, prefix) {
-  console.log(prefix)
+  // console.log(prefix)
   if (queryText && queryText.length > 0) {
     return new Promise((resolve) => { 
       // this requires the bonfire_tag extension
