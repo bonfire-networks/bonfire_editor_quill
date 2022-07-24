@@ -16,14 +16,14 @@
   <div 
     id="editor_quill"
     phx-hook="QuillEditor"
-    data-insert_text={e(assigns, :smart_input_text, "")}
+    data-insert_text={e(@smart_input_text, "")}
     class={@textarea_class}
     >
     <div 
       id="editor"
       class={
         "text-base-content pr-[30px] h-full min-h-full",
-        "min-h-[30px]": e(assigns, :thread_mode, nil) == :flat
+        "min-h-[30px]": @thread_mode == :flat
         }
       data-placeholder={@smart_input_prompt}
       >{@content}
@@ -39,7 +39,7 @@
     @click="open = ! open" 
     class={
       "absolute z-30 top-1 right-1 btn btn-ghost btn-sm text-[16px] btn-circle",
-      "top-3": e(assigns, :thread_mode, nil) == :flat
+      "top-3": @thread_mode == :flat
     }>
       😛
   </div>
@@ -52,9 +52,9 @@
     :class="{'!right-3' : show_smart_input_fullscreen}"
     class={
       "absolute z-50",
-      "bottom-0 right-3": e(assigns, :thread_mode, nil) == :flat,
-      "top-10 right-0": e(assigns, :thread_mode, nil) != :flat,
-      "!top-10 right-0 bottom-[auto]": e(assigns, :showing_within, nil) == :page
+      "bottom-0 right-3": @thread_mode == :flat,
+      "top-10 right-0": @thread_mode != :flat,
+      "!top-10 right-0 bottom-[auto]": @showing_within == :page
     } 
     role="tooltip">
       <div 
