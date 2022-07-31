@@ -5,12 +5,23 @@ import { Picker } from "emoji-mart";
 
 let EditorQuillHooks = {};
 let global_quill = null;
+const contentUserConst = "quillContentUser";
+const saveDuration = 5 * 1000;
+// used for storing deltas
+const Delta = Quill.import("delta");
 
 EditorQuillHooks.QuillEditor = {
   mounted() {
     const container = document.querySelector("#smart_input");
     const area = this.el.querySelector("#editor");
     console.log("editor - quill loading for element with id #editor");
+    // used for mapping when changes are done to running session
+    let contentChange = new Delta();
+    // set content user from either stored session or new empty delta
+    const storedSession = window.sessionStorage.getItem(contentUserConst);
+    const contentUser = (typeof contentChange == typeof storedSession)
+      ? storedSession
+      : contentChange;
 
     const supported_formats = [
       "text",
@@ -79,6 +90,13 @@ EditorQuillHooks.QuillEditor = {
 
     window.quill = quill;
 
+    // run to apply content once on load
+    quill.once("text-change", (delta, oldDelta, source) => {
+      if (source == "api") {
+        quill.setContents(contentUser, source = "api");
+      }
+    });
+
     if (
       this.el.dataset.insert_text != undefined &&
       this.el.dataset.insert_text.length > 0
@@ -102,9 +120,19 @@ EditorQuillHooks.QuillEditor = {
         this.el.querySelector("#quill_content").value = quill.root.innerHTML;
         // console.log(quill.root.innerHTML)
       } else if (source == "user") {
+        contentChange = contentChange.compose(delta);
         this.el.querySelector("#quill_content").value = quill.root.innerHTML;
       }
     });
+
+    // save periodically
+    setInterval(function () {
+      if (change.length() > 0) {
+        console.log("Saving changes", contentChange);
+        window.sessionStorage.setItem(contentUserConst, quill.getContents());
+        contentChange = new Delta();
+      }
+    }, saveDuration);
 
     const getFileFromUrl = async function (url) {
       // note: this will only work for remote images served with appropriate CORS headers
