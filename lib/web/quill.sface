@@ -49,7 +49,6 @@
     x-transition.origin.top.left
     x-on:click.outside="close($refs.button)"
     x-show="open" 
-    :class="{'!right-3' : show_smart_input_fullscreen}"
     class={
       "absolute z-50",
       "bottom-0 right-3": @thread_mode == :flat,
