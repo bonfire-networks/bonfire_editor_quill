@@ -23,7 +23,7 @@ defmodule Bonfire.Editor.Quill.BrowserCase do
 
       import Bonfire.UI.Common.Testing.Helpers
       import Bonfire.Editor.Quill.Test.FakeHelpers
-      import Where
+      import Untangle
 
       @moduletag :e2e
 
