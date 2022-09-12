@@ -9,6 +9,8 @@ config :wallaby,
   otp_app: :bonfire_ui_common,
   screenshot_on_failure: true,
   chromedriver: [
-    path: "assets/node_modules/chromedriver/bin/chromedriver", # point to your chromedriver path
-    headless: true # change to false if you want to see the browser in action
+    # point to your chromedriver path
+    path: "assets/node_modules/chromedriver/bin/chromedriver",
+    # change to false if you want to see the browser in action
+    headless: true
   ]

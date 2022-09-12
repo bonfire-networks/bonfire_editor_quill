@@ -37,7 +37,11 @@ defmodule Bonfire.Editor.Quill.BrowserCase do
 
   def enable_latency_sim(session, latency) do
     Application.put_env(:wallaby, :js_logger, nil)
-    Wallaby.Browser.execute_script(session, "liveSocket.enableLatencySim(#{latency})")
+
+    Wallaby.Browser.execute_script(
+      session,
+      "liveSocket.enableLatencySim(#{latency})"
+    )
   end
 
   def disable_latency_sim(session) do

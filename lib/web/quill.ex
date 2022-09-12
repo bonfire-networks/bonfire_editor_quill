@@ -10,6 +10,6 @@ defmodule Bonfire.Editor.Quill do
   prop thread_mode, :any, default: nil
   prop showing_within, :any, default: nil
 
-  def output_format, do: :html # needed by apps to use this editor to know how to process text they receive from it
-
+  # needed by apps to use this editor to know how to process text they receive from it
+  def output_format, do: :html
 end

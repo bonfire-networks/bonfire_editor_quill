@@ -8,19 +8,28 @@ defmodule Bonfire.Editor.Quill.BrowserTests do
     username = System.get_env("ADMIN_USER", "test_user")
     pw = System.get_env("ADMIN_PASSWORD", "for-testing-only")
     account = fake_account!(%{credential: %{password: pw}})
-    user = fake_user!(account, %{character: %{username: username}, profile: %{name: username}})
+
+    user =
+      fake_user!(account, %{
+        character: %{username: username},
+        profile: %{name: username}
+      })
 
     # alice = fake_user!()
     # conn = conn(user: alice)
     # conn = Phoenix.ConnTest.get(conn, "/")
     # %{@cookie_key => %{value: token}} = conn.resp_cookies
 
-    user_session = session
-    |> visit("/login")
-    |> fill_in(Query.fillable_field("login_fields[email_or_username]"), with: username)
-    |> fill_in(Query.fillable_field("login_fields[password]"), with: pw)
-    # |> Browser.send_keys([:enter])
-    |> click(Query.button("Log in"))
+    user_session =
+      session
+      |> visit("/login")
+      |> fill_in(Query.fillable_field("login_fields[email_or_username]"),
+        with: username
+      )
+      |> fill_in(Query.fillable_field("login_fields[password]"), with: pw)
+      # |> Browser.send_keys([:enter])
+      |> click(Query.button("Log in"))
+
     # |> Browser.set_cookie(@cookie_key, token)
   end
 
@@ -51,5 +60,4 @@ defmodule Bonfire.Editor.Quill.BrowserTests do
     |> new_post(text)
     |> Browser.take_screenshot()
   end
-
 end

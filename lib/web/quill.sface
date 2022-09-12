@@ -1,9 +1,9 @@
-<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet" />
-<div 
+<link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
+<div
   x-cloak
   id="editor_quill_container"
   phx-update="ignore"
-  class={"relative h-full"} 
+  class="relative h-full"
   x-data="{
     open: false,
     close(focusAfter) {
@@ -13,52 +13,47 @@
     }
   }"
   x-on:keydown.escape.prevent.stop="close($refs.button)"
-  >
-  <div 
+>
+  <div
     id="editor_quill"
     phx-hook="QuillEditor"
     data-insert_text={e(@smart_input_text, "")}
     class={@textarea_class}
-    >
-    <div 
+  >
+    <div
       id="editor"
       class={
         "text-base-content pr-[30px] h-full min-h-full",
         "min-h-[30px]": @thread_mode == :flat
-        }
+      }
       data-placeholder={@smart_input_prompt}
-      >{@content}
+    >{@content}
     </div>
-    <input 
-      id="quill_content"
-      name={@field_name} 
-      type="hidden"
-      class="editor_hidden_input"
-    />
+    <input id="quill_content" name={@field_name} type="hidden" class="editor_hidden_input">
   </div>
-  <div 
-    @click="open = ! open" 
+  <div
+    @click="open = ! open"
     class={
       "absolute z-30 top-1 right-1 btn btn-ghost btn-sm text-[16px] btn-circle",
       "top-3": @thread_mode == :flat
-    }>
-      😛
+    }
+  >
+    😛
   </div>
-  <div 
+  <div
     x-ref="panel"
     x-show="open"
     x-transition.origin.top.left
     x-on:click.outside="close($refs.button)"
-    x-show="open" 
+    x-show="open"
     class={
       "absolute z-50",
       "bottom-0 right-3": @thread_mode == :flat,
       "top-10 right-0": @thread_mode != :flat,
       "!top-10 right-0 bottom-[auto]": @showing_within == :page
-    } 
-    role="tooltip">
-      <div 
-        id="picker"
-        ></div>
+    }
+    role="tooltip"
+  >
+    <div id="picker" />
   </div>
 </div>
