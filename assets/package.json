@@ -17,6 +17,6 @@
   },
   "devDependencies": {
     "buffer": "^6.0.3",
-    "chromedriver": "^101.0.0"
+    "chromedriver": "^105.0.0"
   }
 }
