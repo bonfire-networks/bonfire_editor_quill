@@ -23,15 +23,15 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@testim/chrome-version@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/@testim/chrome-version/-/chrome-version-1.1.2.tgz#092005c5b77bd3bb6576a4677110a11485e11864"
-  integrity sha512-1c4ZOETSRpI0iBfIFUqU4KqwBAB2lHUAlBjZz/YqOHqwM9dTTzjV6Km0ZkiEiSCx/tLr1BtESIKyWWMww+RUqw==
+"@testim/chrome-version@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@testim/chrome-version/-/chrome-version-1.1.3.tgz#fbb68696899d7b8c1b9b891eded9c04fe2cd5529"
+  integrity sha512-g697J3WxV/Zytemz8aTuKjTGYtta9+02kva3C1xc7KXB8GdbfE1akGJIsZLyY/FSh2QrnE+fiB7vmWU3XNcb6A==
 
 "@types/node@*":
-  version "18.7.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.7.18.tgz#633184f55c322e4fb08612307c274ee6d5ed3154"
-  integrity sha512-m+6nTEOadJZuTPkKR/SYK3A2d7FZrgElol9UP1Kae90VVU4a6mxnPuLiIW1m4Cq4gZ/nWb9GrdVXJCoCazDAbg==
+  version "18.8.0"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.8.0.tgz#b8ee8d83a99470c0661bd899417fcd77060682fe"
+  integrity sha512-u+h43R6U8xXDt2vzUaVP3VwjjLyOJk6uEciZS8OSyziUQGOwmk+l+4drxcsDboHXwyTaqS1INebghmWMRxq3LA==
 
 "@types/yauzl@^2.9.1":
   version "2.10.0"
@@ -120,15 +120,15 @@ call-bind@^1.0.2:
     get-intrinsic "^1.0.2"
 
 chromedriver@^105.0.0:
-  version "105.0.0"
-  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-105.0.0.tgz#81a68e2bc0618a640defd7317ddf6ae9127fc5e4"
-  integrity sha512-BX3GOUW5m6eiW9cVVF8hw+EFxvrGqYCxbwOqnpk8PjbNFqL5xjy7yel+e6ilJPjckAYFutMKs8XJvOs/W85vvg==
+  version "105.0.1"
+  resolved "https://registry.yarnpkg.com/chromedriver/-/chromedriver-105.0.1.tgz#325cf05aca200328176438991d236ddb6c61711b"
+  integrity sha512-QqylH9mvl4Ybq3mmHsym7jeq/LhEi2sPtD8ffd9ixiDFdPRlh2F4vzrzK+myj1MiXb0TYJK7+OCcMEmsB3Sm/Q==
   dependencies:
-    "@testim/chrome-version" "^1.1.2"
+    "@testim/chrome-version" "^1.1.3"
     axios "^0.27.2"
-    del "^6.0.0"
+    del "^6.1.1"
     extract-zip "^2.0.1"
-    https-proxy-agent "^5.0.0"
+    https-proxy-agent "^5.0.1"
     proxy-from-env "^1.1.0"
     tcp-port-used "^1.0.1"
 
@@ -155,9 +155,9 @@ concat-map@0.0.1:
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
 
 core-js@^3.23.5:
-  version "3.25.1"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.25.1.tgz#5818e09de0db8956e16bf10e2a7141e931b7c69c"
-  integrity sha512-sr0FY4lnO1hkQ4gLDr24K0DGnweGO1QwSj5BpfQjpSJPdqWalja4cTps29Y/PJVG/P7FYlPDkH3hO+Tr0CvDgQ==
+  version "3.25.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.25.4.tgz#76f6bc330a79aafbaf77e9645293351ea5d09b5b"
+  integrity sha512-JDLxg61lFPFYQ7U0HKoyKwVUV63VbbVTb/K73Yf+k4Mf4ZBZxCjfyrWZjTk1ZM7ZrgFSqhSIOmuzYAxG2f/reQ==
 
 debug@4, debug@^4.1.1:
   version "4.3.4"
@@ -198,7 +198,7 @@ define-properties@^1.1.3:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-del@^6.0.0:
+del@^6.1.1:
   version "6.1.1"
   resolved "https://registry.yarnpkg.com/del/-/del-6.1.1.tgz#3b70314f1ec0aa325c6b14eb36b95786671edb7a"
   integrity sha512-ua8BhapfP0JUJKC/zV9yHHDW/rDoDxP4Zhn3AkA6/xT6gY7jYXJiaeyBZznYVujhZZET+UgcbZiQ7sN3WqcImg==
@@ -401,7 +401,7 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-https-proxy-agent@^5.0.0:
+https-proxy-agent@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/https-proxy-agent/-/https-proxy-agent-5.0.1.tgz#c59ef224a04fe8b754f3db0063a25ea30d0005d6"
   integrity sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==
