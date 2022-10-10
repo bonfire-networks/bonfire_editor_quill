@@ -9,6 +9,7 @@ defmodule Bonfire.Editor.Quill do
   prop textarea_class, :css_class, default: nil
   prop thread_mode, :any, default: nil
   prop showing_within, :any, default: nil
+  prop advanced_mode, :boolean, default: false
 
   # needed by apps to use this editor to know how to process text they receive from it
   def output_format, do: :html

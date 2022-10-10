@@ -1,5 +1,7 @@
 import Quill from "quill";
 import QuillMarkdown from "quilljs-markdown";
+import Toolbar from 'quill/modules/toolbar';
+import htmlEditButton from "quill-html-edit-button";
 import "quill-mention";
 import { Picker } from "emoji-mart";
 
@@ -11,8 +13,10 @@ EditorQuillHooks.QuillEditor = {
     const container = document.querySelector("#smart_input");
     const area = this.el.querySelector("#editor");
     console.log("editor - quill loading for element with id #editor");
+    console.log(this.el.dataset.advanced_mode)
+    advanced_mode = this.el.dataset.advanced_mode == "true";
 
-    const supported_formats = [
+    const supported_formats = advanced_mode ? [
       "text",
       // 'background',
       "bold",
@@ -35,46 +39,60 @@ EditorQuillHooks.QuillEditor = {
       // 'formula'
       // 'image'
       // 'video'
-    ];
+    ] : null;
 
-    const quill = new Quill(area, {
-      theme: "bubble",
-      placeholder: area.dataset.placeholder,
-      formats: supported_formats,
-      modules: {
-        toolbar: [
-          ["link"],
-          ["bold", "italic"],
-          // [{ header: [2, 3, false] }],
-          [{ "list": "ordered" }, { "list": "bullet" }, "blockquote"],
-          // ['code-block']
-        ],
-        mention: {
-          allowedChars: /^[A-Za-z0-9_\-.]*$/,
-          fixMentionsToQuill: true,
-          mentionDenotationChars: ["@", "&", "+"],
-          showDenotationChar: true,
-          blotName: "text",
-          spaceAfterInsert: false,
-          source: async function (searchTerm, renderList, mentionChar) {
-            const matchedValues = await getFeedItems(searchTerm, mentionChar);
-            renderList(matchedValues);
-          },
-          onSelect: function (item, insertItem) {
-            // console.log(item.id)
-            insertItem(item.id + " "); // if using 'text' blot
-            quill.setSelection(quill.getLength(), 0); // TODO: move cursor after mention
-          },
-          renderItem: function (item, searchTerm) {
-            return `
+    const modules = {
+      toolbar: [
+        ["link"],
+        ["bold", "italic"],
+        // [{ header: [2, 3, false] }],
+        [{ "list": "ordered" }, { "list": "bullet" }, "blockquote"],
+        // ['code-block']
+      ],
+      mention: {
+        allowedChars: /^[A-Za-z0-9_\-.]*$/,
+        fixMentionsToQuill: true,
+        mentionDenotationChars: ["@", "&", "+"],
+        showDenotationChar: true,
+        blotName: "text",
+        spaceAfterInsert: false,
+        source: async function (searchTerm, renderList, mentionChar) {
+          const matchedValues = await getFeedItems(searchTerm, mentionChar);
+          renderList(matchedValues);
+        },
+        onSelect: function (item, insertItem) {
+          // console.log(item.id)
+          insertItem(item.id + " "); // if using 'text' blot
+          quill.setSelection(quill.getLength(), 0); // TODO: move cursor after mention
+        },
+        renderItem: function (item, searchTerm) {
+          return `
               <div class="flex flex-col py-2">
                 <div class="text-sm text-slate-800 font-semibold">${item.value}</div>
                 <div class="text-xs text-slate-800 text-opacity-70 font-regular">${item.id}</div>
               </div>
             `;
-          },
         },
-      },
+      }
+    }
+
+    if (advanced_mode) {
+      console.log("editor - enable advanced mode");
+
+      Quill.register({
+        // 'modules/toolbar': Toolbar,
+        // 'themes/snow': Snow,
+        "modules/htmlEditButton": htmlEditButton
+      })
+
+      modules.htmlEditButton = { }
+    }
+
+    const quill = new Quill(area, {
+      theme: "bubble",
+      placeholder: this.el.dataset.placeholder,
+      formats: supported_formats,
+      modules: modules,
     });
 
     window.quill = quill;

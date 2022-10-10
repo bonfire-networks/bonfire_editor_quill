@@ -18,7 +18,9 @@
     id="editor_quill"
     phx-hook="QuillEditor"
     data-insert_text={e(@smart_input_text, "")}
+    data-advanced_mode={"#{@advanced_mode}"}
     class={@textarea_class}
+    data-placeholder={@smart_input_prompt}
   >
     <div
       id="editor"
@@ -26,7 +28,6 @@
         "text-base-content pr-[30px] h-full min-h-full",
         "min-h-[30px]": @thread_mode == :flat
       }
-      data-placeholder={@smart_input_prompt}
     >{@content}
     </div>
     <input id="quill_content" name={@field_name} type="hidden" class="editor_hidden_input">
