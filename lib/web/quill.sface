@@ -34,7 +34,8 @@
   </div>
   <div
     @click="open = ! open"
-    class={"absolute z-30 top-3 right-1 btn btn-ghost btn-sm text-[16px] btn-circle"}>
+    class="absolute z-30 top-3 right-1 btn btn-ghost btn-sm text-[16px] btn-circle"
+  >
     😛
   </div>
   <div
