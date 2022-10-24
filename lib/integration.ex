@@ -3,5 +3,5 @@ defmodule Bonfire.Editor.Quill.Integration do
   alias Bonfire.Common.Utils
   import Untangle
 
-  def repo, do: Config.get!(:repo_module)
+  def repo, do: Config.repo()
 end
