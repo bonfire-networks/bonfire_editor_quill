@@ -20,7 +20,7 @@
     data-insert_text={e(@insert_text, nil) || e(@smart_input_opts, :text, nil)}
     data-advanced_mode={"#{@advanced_mode}"}
     class={@textarea_class}
-    data-placeholder={@smart_input_prompt}
+    data-placeholder={e(@smart_input_opts, :prompt, nil)}
   >
     <div
       id="editor"
