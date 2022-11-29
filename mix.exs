@@ -1,9 +1,20 @@
-Code.eval_file("mess.exs")
+Code.eval_file("mess.exs", (if File.exists?("../../lib/mix/mess.exs"), do: "../../lib/mix/"))
 
 defmodule Bonfire.Editor.Quill.MixProject do
   use Mix.Project
 
   def project do
+    if File.exists?("../../.is_umbrella.exs") do
+      [
+        build_path: "../../_build",
+        config_path: "../../config/config.exs",
+        deps_path: "../../deps",
+        lockfile: "../../mix.lock"
+      ]
+    else
+      []
+    end
+    ++
     [
       app: :bonfire_editor_quill,
       version: "0.0.1",
@@ -15,7 +26,7 @@ defmodule Bonfire.Editor.Quill.MixProject do
       deps:
         Mess.deps([
           {:phoenix_live_reload, "~> 1.2", only: :dev},
-          {:dbg, "~> 1.0", only: [:dev, :test]},
+
           {:floki, ">= 0.0.0", only: [:dev, :test]},
           {:wallaby, "~> 0.30", runtime: false, only: :test}
         ])
