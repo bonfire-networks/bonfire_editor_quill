@@ -1,18 +1,8 @@
 <link href="https://cdn.quilljs.com/1.3.6/quill.bubble.css" rel="stylesheet">
 <div
-  x-cloak
   id="editor_quill_container"
   phx-update="ignore"
   class="relative h-full"
-  x-data="{
-    open: false,
-    close(focusAfter) {
-      if (! this.open) return
-      this.open = false
-      focusAfter && focusAfter.focus()
-    }
-  }"
-  x-on:keydown.escape.prevent.stop="close($refs.button)"
 >
   <div
     id="editor_quill"
@@ -31,27 +21,5 @@
     >{@content}
     </div>
     <input id="quill_content" name={@field_name} type="hidden" class="editor_hidden_input">
-  </div>
-  <div
-    @click="open = ! open"
-    class="absolute z-30 top-3 right-1 btn btn-ghost btn-sm text-[16px] btn-circle"
-  >
-    😛
-  </div>
-  <div
-    x-ref="panel"
-    x-show="open"
-    x-transition.origin.top.left
-    x-on:click.outside="close($refs.button)"
-    x-show="open"
-    class={
-      "absolute z-50",
-      "bottom-0 right-3": @thread_mode == :flat,
-      "top-10 right-0": @thread_mode != :flat,
-      "!top-10 right-0 bottom-[auto]": @showing_within == :page
-    }
-    role="tooltip"
-  >
-    <div id="picker" />
   </div>
 </div>
