@@ -3,7 +3,8 @@
   <div
     id="editor_quill"
     phx-hook="QuillEditor"
-    data-insert_text={e(@insert_text, nil) || e(@smart_input_opts, :text, nil)}
+    data-insert_text={e(@insert_text, nil) || e(@smart_input_opts, :text, nil) ||
+      e(@smart_input_opts, :text_suggestion, nil)}
     data-advanced_mode={"#{@advanced_mode}"}
     class={@textarea_class}
     data-placeholder={e(@smart_input_opts, :prompt, nil)}
