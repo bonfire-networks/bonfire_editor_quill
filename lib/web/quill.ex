@@ -4,7 +4,7 @@ defmodule Bonfire.Editor.Quill do
   prop field_name, :string, default: "html_body"
   prop placeholder, :string, default: ""
   prop content, :string, default: ""
-  prop smart_input_opts, :list, default: []
+  prop smart_input_opts, :map, default: %{}
   prop insert_text, :string, default: nil
   prop textarea_class, :css_class, default: nil
   prop thread_mode, :any, default: nil
