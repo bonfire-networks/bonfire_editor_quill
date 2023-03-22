@@ -11,8 +11,8 @@ defmodule Bonfire.Editor.Quill.BrowserTests do
 
     user =
       fake_user!(account, %{
-        character: %{username: username},
-        profile: %{name: username}
+        username: username,
+        name: username
       })
 
     # alice = fake_user!()
