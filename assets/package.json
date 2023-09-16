@@ -17,7 +17,6 @@
     "quilljs-markdown": "^1.1.10"
   },
   "devDependencies": {
-    "buffer": "^6.0.3",
-    "chromedriver": "^105.0.0"
+    "buffer": "^6.0.3"
   }
 }

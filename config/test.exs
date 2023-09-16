@@ -2,7 +2,7 @@ import Config
 
 # NOTE: make sure to put something similar (update the otp name!) in you're parent app's config/test.exs
 
-config :bonfire_ui_common, sql_sandbox: true
+config :bonfire, sql_sandbox: true
 
 config :wallaby,
   # base_url: Bonfire.Web.Endpoint.url(),
