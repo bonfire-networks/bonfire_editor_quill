@@ -1,4 +1,4 @@
 faker = "~> 0.14" # fake data generation
 jason = "~> 1.0"
-surface = "~> 0.11.0"
+surface = "~> 0.11.2"
 untangle = "~> 0.3.0"
