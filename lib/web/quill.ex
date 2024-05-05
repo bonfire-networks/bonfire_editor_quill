@@ -1,4 +1,6 @@
 defmodule Bonfire.Editor.Quill do
+  @moduledoc "./README.md" |> File.stream!() |> Enum.drop(1) |> Enum.join()
+
   use Bonfire.UI.Common.Web, :stateless_component
 
   prop field_name, :string, default: "html_body"
