@@ -23,6 +23,8 @@ defmodule Bonfire.Editor.Quill.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       # import Bonfire.Editor.Quill.DataCase
+
+      @moduletag :backend
     end
   end
 
