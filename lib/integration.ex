@@ -1,5 +1,5 @@
 defmodule Bonfire.Editor.Quill.Integration do
-  alias Bonfire.Common.Config
+  use Bonfire.Common.Config
   # alias Bonfire.Common.Utils
   # import Untangle
 
