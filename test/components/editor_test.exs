@@ -1,5 +1,5 @@
 defmodule Bonfire.Editor.Quill.EditorTests do
-  use Bonfire.Editor.Quill.ConnCase, async: true
+  use Bonfire.Editor.Quill.ConnCase, async: System.get_env("TEST_UI_ASYNC") != "no"
 
   # test "can publish a post with emoji" do
 
