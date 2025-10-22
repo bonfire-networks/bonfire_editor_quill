@@ -11,10 +11,10 @@
   >
     <div
       id="editor"
-      class={
+      class={[
         "text-base-content pr-[30px] h-full min-h-full",
         "min-h-[30px]": @thread_mode == :flat
-      }
+      ]}
     >{@content}
     </div>
     <input id="quill_content" name={@field_name} type="hidden" class="editor_hidden_input">
