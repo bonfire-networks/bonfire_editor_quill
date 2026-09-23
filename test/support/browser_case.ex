@@ -57,7 +57,7 @@ defmodule Bonfire.Editor.Quill.BrowserCase do
           )
           |> fill_in(Query.fillable_field("login_fields[password]"), with: pw)
           # |> Browser.send_keys([:enter])
-          |> click(Query.button("Log in"))
+          |> click(Query.button("Sign in"))
 
         # |> Browser.set_cookie(@cookie_key, token)
       end
